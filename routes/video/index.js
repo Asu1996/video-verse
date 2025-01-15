@@ -6,6 +6,7 @@ const router = require('express').Router()
 const { uploadController } = require('../../controllers/uploadController')
 const { maxFileSize } = require('../../config')
 const { getAllController } = require('../../controllers/getAllController')
+const { trimController } = require('../../controllers/trimController')
 
 const uploadDir = path.join(__dirname, '../../uploads')
 if (!fs.existsSync(uploadDir)) {
@@ -28,6 +29,7 @@ const uploadMiddleware = multer({
 }).single('videoFile')
 
 router.post('/upload', uploadMiddleware, uploadController)
+router.post('/trim', trimController)
 router.get('/all', getAllController) // adding a route for personal use to fetch all videos data
 
 module.exports = router
