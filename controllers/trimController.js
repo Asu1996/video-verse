@@ -22,6 +22,8 @@ const trimController = async (req, res) => {
     ffmpeg(inputPath)
       .setStartTime(start)
       .setDuration(video.duration - start - end)
+      .videoCodec('libx264')
+      .audioCodec('aac')
       .output(outputPath)
       .on('end', async () => {
         // creating new row instead of updating the existing row

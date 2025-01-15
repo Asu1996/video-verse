@@ -7,6 +7,8 @@ const { uploadController } = require('../../controllers/uploadController')
 const { maxFileSize } = require('../../config')
 const { getAllController } = require('../../controllers/getAllController')
 const { trimController } = require('../../controllers/trimController')
+// const { mergeController } = require('../../controllers/mergeController')
+const { mergeController2 } = require('../../controllers/mergeController2')
 
 const uploadDir = path.join(__dirname, '../../uploads')
 if (!fs.existsSync(uploadDir)) {
@@ -30,6 +32,7 @@ const uploadMiddleware = multer({
 
 router.post('/upload', uploadMiddleware, uploadController)
 router.post('/trim', trimController)
+router.post('/merge', mergeController2)
 router.get('/all', getAllController) // adding a route for personal use to fetch all videos data
 
 module.exports = router
