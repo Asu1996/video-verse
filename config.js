@@ -4,7 +4,8 @@ const config = {
     durationLimits: {
         min: 5,
         max: 25
-    }
+    },
+    authToken: `static-token-123`
 }
 
 module.exports = config

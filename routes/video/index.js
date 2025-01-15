@@ -13,6 +13,7 @@ const {
   generateLinkController,
   accessVideoController,
 } = require('../../controllers/linkSharingController')
+const { authMiddleware } = require('../../middlewares/auth')
 
 const uploadDir = path.join(__dirname, '../../uploads')
 if (!fs.existsSync(uploadDir)) {
@@ -33,6 +34,8 @@ const uploadMiddleware = multer({
   storage,
   limits: { fileSize: maxFileSize },
 }).single('videoFile')
+
+router.use(authMiddleware);
 
 router.post('/upload', uploadMiddleware, uploadController)
 router.post('/trim', trimController)
