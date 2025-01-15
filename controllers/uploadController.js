@@ -1,11 +1,13 @@
 const fs = require('fs')
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-const ffprobePath = require('@ffprobe-installer/ffprobe').path;
-const ffmpeg = require('fluent-ffmpeg');
-const { durationLimits } = require('../config');
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
+const ffprobePath = require('@ffprobe-installer/ffprobe').path
+const ffmpeg = require('fluent-ffmpeg')
 
-ffmpeg.setFfmpegPath(ffmpegPath);
-ffmpeg.setFfprobePath(ffprobePath);
+const { durationLimits } = require('../config')
+const Video = require('../db/models/video')
+
+ffmpeg.setFfmpegPath(ffmpegPath)
+ffmpeg.setFfprobePath(ffprobePath)
 
 const uploadController = (req, res) => {
   const { file } = req
@@ -27,7 +29,20 @@ const uploadController = (req, res) => {
         .json({ error: 'Video duration out of allowed range (5-25 seconds)' })
     }
 
-    return res.send(file)
+    // return res.send(file)
+    try {
+      const createdVideo = await Video.create(
+        file.filename,
+        file.originalname,
+        duration
+      )
+      return res.json({ message: 'Upload success', video: createdVideo })
+    } catch (dbErr) {
+      fs.unlinkSync(file.path)
+      return res
+        .status(500)
+        .json({ error: 'Database error', details: dbErr.message })
+    }
   })
 }
 
