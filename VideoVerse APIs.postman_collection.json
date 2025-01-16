@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "d3e80ac4-c011-45cd-8267-b9b5b4ff1390",
+		"name": "VideoVerse APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15375250",
+		"_collection_link": "https://lively-crescent-213320.postman.co/workspace/MAILMODO~c229a83b-344c-464f-b595-77de9411c340/collection/15375250-d3e80ac4-c011-45cd-8267-b9b5b4ff1390?action=share&source=collection_link&creator=15375250"
+	},
+	"item": [
+		{
+			"name": "get all videos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "upload video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "videoFile",
+							"type": "file",
+							"src": "/Users/asutoshrout/Downloads/WhatsApp Video 2024-06-24 at 11.13.40 PM.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/video/trim",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"video",
+						"trim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trim video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "videoFile",
+							"type": "file",
+							"src": "/Users/asutoshrout/Downloads/WhatsApp Video 2024-06-24 at 11.13.40 PM.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/video/trim",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"video",
+						"trim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "merge videos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "videoFile",
+							"type": "file",
+							"src": "/Users/asutoshrout/Downloads/WhatsApp Video 2024-06-24 at 11.13.40 PM.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/video/trim",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"video",
+						"trim"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "share video link",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
