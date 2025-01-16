@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 ffmpeg.setFfmpegPath(ffmpegPath)
-const Video = require('../db/models/video')
+const Video = require('../../db/models/video')
 
 const mergeController = async (req, res) => {
   const { videoIds } = req.body
@@ -25,8 +25,6 @@ const mergeController = async (req, res) => {
       videoPaths.push(path.join(__dirname, '../uploads', video.filename))
     }
 
-    // Create a text file for FFmpeg "concat" filter
-    // Alternatively, you can use fluent-ffmpeg's merging approach
     const concatFileContent = videoPaths.map((v) => `file '${v}'`).join('\n')
     const concatFilePath = path.join(
       __dirname,
@@ -44,7 +42,6 @@ const mergeController = async (req, res) => {
       .outputOptions(['-c:v libx264', '-c:a aac'])
       .output(outputPath)
       .on('end', async () => {
-        // Read final duration
         ffmpeg.ffprobe(outputPath, async (err, metadata) => {
           if (err) {
             return res
@@ -58,7 +55,6 @@ const mergeController = async (req, res) => {
             finalDuration
           )
 
-          // Cleanup the temp concat file
           fs.unlinkSync(concatFilePath)
 
           res.status(200).json({ message: 'Videos merged', video: mergedVideo })

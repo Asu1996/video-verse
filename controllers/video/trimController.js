@@ -1,6 +1,6 @@
 const path = require('path')
 const ffmpeg = require('fluent-ffmpeg')
-const Video = require('../db/models/video')
+const Video = require('../../db/models/video')
 
 const trimController = async (req, res) => {
   const { videoId, start = 0, end = 0 } = req.body

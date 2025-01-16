@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 ffmpeg.setFfmpegPath(ffmpegPath)
-const Video = require('../db/models/video')
+const Video = require('../../db/models/video')
 
 const mergeController2 = async (req, res) => {
   const { videoIds } = req.body

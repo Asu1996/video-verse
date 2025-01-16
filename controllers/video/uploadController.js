@@ -3,8 +3,8 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
 const ffprobePath = require('@ffprobe-installer/ffprobe').path
 const ffmpeg = require('fluent-ffmpeg')
 
-const { durationLimits } = require('../config')
-const Video = require('../db/models/video')
+const { durationLimits } = require('../../config')
+const Video = require('../../db/models/video')
 
 ffmpeg.setFfmpegPath(ffmpegPath)
 ffmpeg.setFfprobePath(ffprobePath)

@@ -1,9 +1,9 @@
 const path = require('path')
 const { v4: uuidv4 } = require('uuid')
-const Video = require('../db/models/video')
-const LinkShare = require('../db/models/linkShare')
+const Video = require('../../db/models/video')
+const LinkShare = require('../../db/models/linkShare')
 const fs = require('fs')
-const { linkShareExpiry } = require('../config')
+const { linkShareExpiry } = require('../../config')
 
 const generateLinkController = async (req, res) => {
   const { videoId } = req.body
