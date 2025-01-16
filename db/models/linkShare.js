@@ -4,8 +4,6 @@ const path = require('path')
 const dbPath = path.join(__dirname, '../database.sqlite')
 const db = new sqlite3.Database(dbPath)
 
-/** @typedef {{ id: number, filename: string, originalName: string, duration: number, createdAt: string }} VideoSchema */
-
 class LinkShare {
   /**
    * @param {number} videoId

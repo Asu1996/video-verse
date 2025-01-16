@@ -3,12 +3,13 @@ const { v4: uuidv4 } = require('uuid')
 const Video = require('../db/models/video')
 const LinkShare = require('../db/models/linkShare')
 const fs = require('fs')
+const { linkShareExpiry } = require('../config')
 
 const generateLinkController = async (req, res) => {
-  const { videoId, expiresIn } = req.body // '3600' for 1 hour
+  const { videoId } = req.body
 
-  if (!videoId || !expiresIn) {
-    return res.status(400).json({ error: 'videoId and expiresIn are required' })
+  if (!videoId) {
+    return res.status(400).json({ error: 'videoId is required' })
   }
 
   const video = await Video.findById(videoId)
@@ -17,7 +18,7 @@ const generateLinkController = async (req, res) => {
   }
 
   const shareToken = uuidv4()
-  const expiresAt = new Date(Date.now() + parseInt(expiresIn, 10) * 1000) // from seconds
+  const expiresAt = new Date(Date.now() + parseInt(linkShareExpiry, 10) * 1000) // from seconds
 
   try {
     await LinkShare.create(videoId, shareToken, expiresAt)
@@ -27,7 +28,7 @@ const generateLinkController = async (req, res) => {
       .json({ error: 'Database error', details: dbErr.message })
   }
 
-  res.status(201).json({
+  res.json({
     message: 'Link created',
     shareUrl: `${req.protocol}://${req.get('host')}/video/share/${shareToken}`,
   })
