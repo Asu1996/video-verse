@@ -52,7 +52,7 @@ const accessVideoController = async (req, res) => {
   if (!video) {
     return res.status(404).json({ error: 'Video not found' })
   }
-  const videoPath = path.join(__dirname, '../uploads', video.filename)
+  const videoPath = path.join(__dirname, '../../uploads', video.filename)
   if (!fs.existsSync(videoPath)) {
     return res.status(404).json({ error: 'Video file not found on server' })
   }

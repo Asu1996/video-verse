@@ -23,15 +23,15 @@ const mergeController2 = async (req, res) => {
       if (!video) {
         return res.status(404).json({ error: `Video with ID ${id} not found` })
       }
-      videoPaths.push(path.join(__dirname, '../uploads', video.filename))
+      videoPaths.push(path.join(__dirname, '../../uploads', video.filename))
 
       mergedVideo = mergedVideo.addInput(
-        path.join(__dirname, '../uploads', video.filename)
+        path.join(__dirname, '../../uploads', video.filename)
       )
     }
 
     const outputFilename = `${Date.now()}-merged.mp4`
-    const outputPath = path.join(__dirname, '../uploads', outputFilename)
+    const outputPath = path.join(__dirname, '../../uploads', outputFilename)
 
     mergedVideo
       .complexFilter([

@@ -1,14 +1,14 @@
 const router = require('express').Router()
 
-const { uploadController } = require('../../controllers/uploadController')
-const { getAllController } = require('../../controllers/getAllController')
-const { trimController } = require('../../controllers/trimController')
+const { uploadController } = require('../../controllers/video/uploadController')
+const { getAllController } = require('../../controllers/video/getAllController')
+const { trimController } = require('../../controllers/video/trimController')
 // const { mergeController } = require('../../controllers/mergeController')
-const { mergeController2 } = require('../../controllers/mergeController2')
+const { mergeController2 } = require('../../controllers/video/mergeController2')
 const {
   generateLinkController,
   accessVideoController,
-} = require('../../controllers/linkSharingController')
+} = require('../../controllers/linkShare/linkSharingController')
 const { authMiddleware } = require('../../middlewares/authMiddleware')
 const { uploadMiddleware } = require('../../middlewares/uploadMiddleware')
 

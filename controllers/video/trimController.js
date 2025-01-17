@@ -15,9 +15,9 @@ const trimController = async (req, res) => {
       return res.status(404).json({ error: 'Video not found' })
     }
 
-    const inputPath = path.join(__dirname, '../uploads', video.filename)
+    const inputPath = path.join(__dirname, '../../uploads', video.filename)
     const outputFilename = `${Date.now()}-trimmed-${video.filename}`
-    const outputPath = path.join(__dirname, '../uploads', outputFilename)
+    const outputPath = path.join(__dirname, '../../uploads', outputFilename)
 
     ffmpeg(inputPath)
       .setStartTime(start)
